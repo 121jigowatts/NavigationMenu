@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using NavigationMenu.Models
+@using NavigationMenu.Helper
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -17,32 +20,30 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <span id="logo" class="glyphicon glyphicon-fire navbar-brand" aria-hidden="true"></span>
+                @Html.ActionLink("Navigation Menu", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button">
-                            サンプル<span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li>@Html.ActionLink("Upload", "Upload", "Home")</li>
-                            <li>@Html.ActionLink("Autocomplete", "Create", "Home")</li>
-                            <li ><a href="#">リンクのリスト１</a></li>
-                            <li ><a href="#">リンクのリスト２</a></li>
-                            <li ><a href="#">リンクのリスト３</a></li>
-                            <li class="dropdown-submenu">
-                                <a tableindex="-1" href="#">More options</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="http://google.com">Google</a></li>
-                                    <li><a href="http://yahoo.com">Yahoo</a></li>
+                    @foreach (var item in Session["menu"] as List<NavigationLink>)
+                    {
+                        if (item.ChildMenu == null)
+                        {
+                            <li>@Html.ActionLink(item.LinkText, item.ActionName, item.ControllerName)</li>
+                        }
+                        else
+                        {
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                                    @item.LinkText
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    @Html.NavigationSubmenuListFor(item.ChildMenu)
                                 </ul>
                             </li>
-                        </ul>
-                    </li>
+                        }
+                    }
                 </ul>
             </div>
         </div>

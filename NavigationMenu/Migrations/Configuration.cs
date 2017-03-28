@@ -1,5 +1,6 @@
 namespace NavigationMenu.Migrations
 {
+    using Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -14,18 +15,28 @@ namespace NavigationMenu.Migrations
 
         protected override void Seed(NavigationMenu.Data.AppDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            if (context == null)
+            {
+                throw new ArgumentNullException("context","context is null.");
+            }
+            // Unicode(UTF-8) - コードページ65001で保存
+            context.MenuItems.AddOrUpdate(
+                p => p.LinkText,
+                new MenuItem { ParentId = null, LinkText = "ホーム", ActionName = "Index", ControllerName = "Home", Order = 1 },
+                new MenuItem { ParentId = null, LinkText = "詳細", ActionName = "About", ControllerName = "Home", Order = 2 },
+                new MenuItem { ParentId = null, LinkText = "連絡先", ActionName = "Contact", ControllerName = "Home", Order = 3 },
+                new MenuItem { ParentId = null, LinkText = "サンプル", ActionName = null, ControllerName = null, Order = 4 },
+                new MenuItem { ParentId = 4, LinkText = "Upload", ActionName = "Upload", ControllerName = "Home", Order = 1 },
+                new MenuItem { ParentId = 4, LinkText = "Autocomplete", ActionName = "Create", ControllerName = "Home", Order = 2 },
+                new MenuItem { ParentId = 4, LinkText = "Sample", ActionName = null, ControllerName = null, Order = 3 },
+                new MenuItem { ParentId = 7, LinkText = "Sample01", ActionName = "Index", ControllerName = "Home", Order = 1 },
+                new MenuItem { ParentId = 7, LinkText = "Sample02", ActionName = "Index", ControllerName = "Home", Order = 2 },
+                new MenuItem { ParentId = 7, LinkText = "More Options", ActionName = null, ControllerName = null, Order = 3 },
+                new MenuItem { ParentId = 10, LinkText = "Google", ActionName = "Index", ControllerName = "Home", Order = 1 },
+                new MenuItem { ParentId = 10, LinkText = "Yahoo", ActionName = "Index", ControllerName = "Home", Order = 2 },
+                new MenuItem { ParentId = 4, LinkText = "LogViewer", ActionName = "Index", ControllerName = "Logging", Order = 4 },
+                new MenuItem { ParentId = 4, LinkText = "Todo", ActionName = "Index", ControllerName = "Todo", Order = 5 }
+                );
         }
     }
 }

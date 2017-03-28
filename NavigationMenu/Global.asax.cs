@@ -1,5 +1,9 @@
-﻿using System;
+﻿using NavigationMenu.Data;
+using NavigationMenu.Migrations;
+using NavigationMenu.Models;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -14,10 +18,18 @@ namespace NavigationMenu
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         protected void Application_Start()
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<AppDbContext, Configuration>());
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+        }
+
+        protected void Session_Start()
+        {
+            var menu = new NavigationLink().Menu;
+            Session["menu"] = menu;
         }
     }
 }

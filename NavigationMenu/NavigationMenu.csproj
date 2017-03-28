@@ -134,6 +134,15 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Helper\NavigationMenuHelper.cs" />
+    <Compile Include="Migrations\201703280251485_Initial.cs" />
+    <Compile Include="Migrations\201703280251485_Initial.Designer.cs">
+      <DependentUpon>201703280251485_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703280615135_UpdateDatabase.cs" />
+    <Compile Include="Migrations\201703280615135_UpdateDatabase.Designer.cs">
+      <DependentUpon>201703280615135_UpdateDatabase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\MenuItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -196,6 +205,14 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201703280251485_Initial.resx">
+      <DependentUpon>201703280251485_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703280615135_UpdateDatabase.resx">
+      <DependentUpon>201703280615135_UpdateDatabase.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

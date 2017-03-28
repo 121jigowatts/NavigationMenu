@@ -23,6 +23,9 @@ textarea {
     max-width: 280px;
 }
 
+#logo {
+    color: #0f9;
+}
 
 .dropdown-submenu {
     position: relative;
