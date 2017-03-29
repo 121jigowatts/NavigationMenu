@@ -13,6 +13,8 @@ namespace NavigationMenu.Models
         public int Id { get; set; }
         public int? ParentId { get; set; }
         [Required]
+        public int RoleId { get; set; }
+        [Required]
         public string LinkText { get; set; }
         public string ActionName { get; set; }
         public string ControllerName { get; set; }
@@ -24,8 +26,27 @@ namespace NavigationMenu.Models
         public IEnumerable<NavigationLink> ChildMenu { get; set; }
     }
 
+    public enum Role
+    {
+        User,
+        PowerUser,
+        Administrator,
+    }
+
     public class Navigation
     {
+        public Navigation() : this(role: Role.User)
+        {
+
+        }
+
+        public Navigation(Role role)
+        {
+            this.RoleId = (int)role;
+        }
+
+        public int RoleId { get; }
+
         public IEnumerable<NavigationLink> Menu
         {
             get
@@ -34,6 +55,7 @@ namespace NavigationMenu.Models
                 using (var context = new AppDbContext())
                 {
                     var data = context.MenuItems
+                        .Where(n => n.RoleId <= RoleId)
                         .OrderBy(n => n.Order)
                         .ToList();
 

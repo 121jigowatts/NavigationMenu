@@ -143,6 +143,10 @@
     <Compile Include="Migrations\201703280615135_UpdateDatabase.Designer.cs">
       <DependentUpon>201703280615135_UpdateDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703290028570_AddRoleId.cs" />
+    <Compile Include="Migrations\201703290028570_AddRoleId.Designer.cs">
+      <DependentUpon>201703290028570_AddRoleId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\MenuItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -212,6 +216,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703280615135_UpdateDatabase.resx">
       <DependentUpon>201703280615135_UpdateDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703290028570_AddRoleId.resx">
+      <DependentUpon>201703290028570_AddRoleId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

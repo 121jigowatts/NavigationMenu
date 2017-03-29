@@ -28,7 +28,9 @@ namespace NavigationMenu
 
         protected void Session_Start()
         {
-            var menu = new Navigation().Menu;
+            //var role = Role.PowerUser;
+            var role = Role.Administrator;
+            var menu = new Navigation(role).Menu;
             Session["menu"] = menu;
         }
     }
