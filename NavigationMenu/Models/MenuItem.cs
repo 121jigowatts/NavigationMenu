@@ -21,6 +21,11 @@ namespace NavigationMenu.Models
 
     public class NavigationLink : MenuItem
     {
+        public IEnumerable<NavigationLink> ChildMenu { get; set; }
+    }
+
+    public class Navigation
+    {
         public IEnumerable<NavigationLink> Menu
         {
             get
@@ -43,8 +48,6 @@ namespace NavigationMenu.Models
                 return menu;
             }
         }
-
-        public IEnumerable<NavigationLink> ChildMenu { get; set; }
 
         #region helper method
         private static NavigationLink MappingLinkItems(MenuItem item)

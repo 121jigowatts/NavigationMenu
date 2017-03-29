@@ -28,7 +28,7 @@ namespace NavigationMenu
 
         protected void Session_Start()
         {
-            var menu = new NavigationLink().Menu;
+            var menu = new Navigation().Menu;
             Session["menu"] = menu;
         }
     }
